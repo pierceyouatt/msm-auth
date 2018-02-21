@@ -41,37 +41,66 @@
     Image url
   </dt>
   <dd>
-    <%= @movie.image_url %>
+    <img src="<%= @movie.image_url %>">
   </dd>
 
   <dt>
     Director
   </dt>
   <dd>
-    <%= @movie.director_id %>
-  </dd>
-
-  <dt>
-    Created at
-  </dt>
-  <dd>
-    <%= time_ago_in_words(@movie.created_at) %> ago
-  </dd>
-
-  <dt>
-    Updated at
-  </dt>
-  <dd>
-    <%= time_ago_in_words(@movie.updated_at) %> ago
+    <a href="/directors/<%= @movie.director_id %>">
+      <%= @movie.director.name %>
+    </a>
   </dd>
 </dl>
 
-<a href="/delete_movie/<%= @movie.id %>" class="btn btn-default">
-  Delete movie
-</a>
+<div class="card">
+  <div class="card-header">
+    Cast
+  </div>
 
-<hr>
+  <ul class="list-group list-group-flush">
+    <% @movie.characters.each do |character| %>
+      <li class="list-group-item">
+        <a href="/actors/<%= character.actor_id %>">
+          <%= character.actor.name %>
+        </a>
 
-<a href="/movies">
-  Go back
-</a>
+        (<%= character.name %>)
+      </li>
+    <% end %>
+
+    <li class="list-group-item list-group-item-success">
+      Add a new character to this movie
+    </li>
+
+    <li class="list-group-item">
+      <form action="/create_character" method="post">
+        <!-- Hidden input for movie_id -->
+        <input type="hidden" name="movie_id" value="<%= @movie.id %>">
+
+        <!-- Label and input for actor_id -->
+        <div class="form-group">
+          <label for="actor_id">
+            Actor
+          </label>
+
+          <%= select_tag("actor_id", options_from_collection_for_select(Actor.order(:name), :id, :name), :class => "form-control") %>
+        </div>
+
+        <!-- Label and input for name -->
+        <div class="form-group">
+          <label for="name">
+            Name
+          </label>
+
+          <input type="text" id="name" name="name" class="form-control" value="<%= @character.try(:name) %>">
+        </div>
+
+        <button class="btn btn-block btn-outline-secondary">
+          Create character
+        </button>
+      </form>
+    </li>
+  </ul>
+</div>

@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/firstdraft/draft_generators.git
-  revision: f2aba8af2d34caabbc0df01fca017b485d7a9bc2
+  revision: 75c2b6906f569306601318f958b1ddfec87ec2b0
   specs:
     draft_generators (0.0.3)
       devise

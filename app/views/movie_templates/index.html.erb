@@ -10,9 +10,7 @@
 
 <table class="table">
   <tr>
-    <th>
-      ID
-    </th>
+    <th></th>
 
     <th>
       Title
@@ -23,27 +21,7 @@
     </th>
 
     <th>
-      Duration
-    </th>
-
-    <th>
-      Description
-    </th>
-
-    <th>
-      Image url
-    </th>
-
-    <th>
       Director
-    </th>
-
-    <th>
-      Created at
-    </th>
-
-    <th>
-      Updated at
     </th>
 
     <th>
@@ -53,7 +31,7 @@
   <% @movies.each do |movie| %>
   <tr>
     <td>
-      <%= movie.id %>
+      <img src="<%= movie.image_url %>" width="100">
     </td>
 
     <td>
@@ -65,27 +43,9 @@
     </td>
 
     <td>
-      <%= movie.duration %>
-    </td>
-
-    <td>
-      <%= movie.description %>
-    </td>
-
-    <td>
-      <%= movie.image_url %>
-    </td>
-
-    <td>
-      <%= movie.director_id %>
-    </td>
-
-    <td>
-      <%= time_ago_in_words(movie.created_at) %> ago
-    </td>
-
-    <td>
-      <%= time_ago_in_words(movie.updated_at) %> ago
+      <a href="/directors/<%= movie.director_id %>">
+        <%= movie.director.name %>
+      </a>
     </td>
 
     <td>
