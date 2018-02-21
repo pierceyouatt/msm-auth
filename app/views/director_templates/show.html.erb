@@ -2,8 +2,8 @@
   Director #<%= @director.id %> details
 </h1>
 
-<a href="/directors/<%= @director.id %>/edit">
-  Edit director
+<a href="/directors">
+  Go back
 </a>
 
 <hr>
@@ -27,37 +27,85 @@
     Bio
   </dt>
   <dd>
-    <%= @director.bio %>
+    <%= truncate(@director.bio) %>
   </dd>
 
   <dt>
-    Image url
+    Image
   </dt>
   <dd>
-    <%= @director.image_url %>
+    <img src="<%= @director.image_url %>">
   </dd>
 
   <dt>
-    Created at
+    Number of films
   </dt>
   <dd>
-    <%= time_ago_in_words(@director.created_at) %> ago
-  </dd>
-
-  <dt>
-    Updated at
-  </dt>
-  <dd>
-    <%= time_ago_in_words(@director.updated_at) %> ago
+    <%= @director.movies.count %>
   </dd>
 </dl>
 
-<a href="/delete_director/<%= @director.id %>">
-  Delete director
-</a>
+<div class="row mb-4">
+  <div class="col">
+    <a href="/directors/<%= @director.id %>/edit" class="btn btn-block btn-outline-secondary">
+      Edit director
+    </a>
+  </div>
 
-<hr>
+  <div class="col">
+    <a href="/delete_director/<%= @director.id %>" class="btn btn-block btn-outline-secondary">
+      Delete director
+    </a>
+  </div>
+</div>
 
-<a href="/directors">
-  Go back
-</a>
+<div class="card">
+  <div class="card-header">
+    Filmography
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @director.movies.each do |movie| %>
+      <li class="list-group-item">
+        <a href="/movies/<%= movie.id %>">
+          <%= movie.title %>
+        </a>
+
+        (<%= movie.year %>)
+      </li>
+    <% end %>
+
+    <li class="list-group-item list-group-item-success">
+      Add a new movie for this director
+    </li>
+
+    <li class="list-group-item">
+      <form action="/create_movie" method="post">
+        <!-- Hidden input for director_id -->
+        <input type="hidden" name="director_id" value="<%= @director.id %>">
+
+        <!-- Label and input for title -->
+        <div class="form-group">
+          <label for="title">
+            Title
+          </label>
+
+          <input type="text" id="title" name="title" class="form-control">
+        </div>
+
+        <!-- Label and input for year -->
+        <div class="form-group">
+          <label for="year">
+            Year
+          </label>
+
+          <input type="text" id="year" name="year" class="form-control">
+        </div>
+
+        <button class="btn btn-block btn-outline-secondary">
+          Create movie
+        </button>
+      </form>
+    </li>
+  </ul>
+</div>

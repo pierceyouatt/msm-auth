@@ -67,7 +67,11 @@
       Director
     </label>
 
-    <input type="text" id="director_id" name="director_id" class="form-control" value="<%= @movie.try(:director_id) %>">
+    <%= select_tag("director_id", options_from_collection_for_select(Director.order(:name), :id, :name, @movie.try(:director_id)), :class => "form-control") %>
+
+    <p class="form-text">
+      or <a href="/directors/new">add a new director</a> first
+    </p>
   </div>
 
   <button class="btn btn-block btn-outline-secondary">

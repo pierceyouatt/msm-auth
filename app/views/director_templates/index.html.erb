@@ -10,9 +10,7 @@
 
 <table class="table">
   <tr>
-    <th>
-      ID
-    </th>
+    <th></th>
 
     <th>
       Name
@@ -23,29 +21,13 @@
     </th>
 
     <th>
-      Bio
-    </th>
-
-    <th>
-      Image url
-    </th>
-
-    <th>
-      Created at
-    </th>
-
-    <th>
-      Updated at
-    </th>
-
-    <th>
     </th>
   </tr>
 
   <% @directors.each do |director| %>
   <tr>
     <td>
-      <%= director.id %>
+      <img src="<%= director.image_url %>" width="100">
     </td>
 
     <td>
@@ -54,22 +36,6 @@
 
     <td>
       <%= director.dob %>
-    </td>
-
-    <td>
-      <%= director.bio %>
-    </td>
-
-    <td>
-      <%= director.image_url %>
-    </td>
-
-    <td>
-      <%= time_ago_in_words(director.created_at) %> ago
-    </td>
-
-    <td>
-      <%= time_ago_in_words(director.updated_at) %> ago
     </td>
 
     <td>
