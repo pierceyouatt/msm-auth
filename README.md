@@ -10,7 +10,7 @@ Our starting point is [the target](https://msm-associations-target.herokuapp.com
  - Then, users should be able to click a button on a movie's show page to bookmark it.
  - Users should be able to visit a page that shows a list of movies that they have bookmarked.
 
-### Here is [our target](https://msm-auth-target.herokuapp.com)
+### Here is [our target](https://msm-auth.herokuapp.com)
 
 ## Devise Guide
 
