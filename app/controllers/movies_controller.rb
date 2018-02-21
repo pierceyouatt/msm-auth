@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.all.order(:created_at => :desc)
 
     render("movie_templates/index.html.erb")
   end
