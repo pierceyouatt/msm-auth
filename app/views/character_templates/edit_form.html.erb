@@ -20,7 +20,11 @@
       Movie
     </label>
 
-    <input type="text" id="movie_id" name="movie_id" class="form-control" value="<%= @character.movie_id %>">
+    <%= select_tag("movie_id", options_from_collection_for_select(Movie.order(:title), :id, :title, @character.try(:movie_id)), :class => "form-control") %>
+
+    <p class="form-text">
+      or <a href="/movies/new">add a new movie</a> first
+    </p>
   </div>
 
   <!-- Label and input for actor_id -->
@@ -29,7 +33,11 @@
       Actor
     </label>
 
-    <input type="text" id="actor_id" name="actor_id" class="form-control" value="<%= @character.actor_id %>">
+    <%= select_tag("actor_id", options_from_collection_for_select(Actor.order(:name), :id, :name, @character.try(:actor_id)), :class => "form-control") %>
+
+    <p class="form-text">
+      or <a href="/actors/new">add a new actor</a> first
+    </p>
   </div>
 
   <!-- Label and input for name -->

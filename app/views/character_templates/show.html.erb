@@ -2,8 +2,8 @@
   Character #<%= @character.id %> details
 </h1>
 
-<a href="/characters/<%= @character.id %>/edit">
-  Edit character
+<a href="/characters">
+  Go back
 </a>
 
 <hr>
@@ -13,14 +13,18 @@
     Movie
   </dt>
   <dd>
-    <%= @character.movie_id %>
+    <a href="/movies/<%= @character.movie_id %>">
+      <%= @character.movie.title %>
+    </a>
   </dd>
 
   <dt>
     Actor
   </dt>
   <dd>
-    <%= @character.actor_id %>
+    <a href="/actors/<%= @character.actor_id %>">
+      <%= @character.actor.name %>
+    </a>
   </dd>
 
   <dt>
@@ -29,28 +33,19 @@
   <dd>
     <%= @character.name %>
   </dd>
-
-  <dt>
-    Created at
-  </dt>
-  <dd>
-    <%= time_ago_in_words(@character.created_at) %> ago
-  </dd>
-
-  <dt>
-    Updated at
-  </dt>
-  <dd>
-    <%= time_ago_in_words(@character.updated_at) %> ago
-  </dd>
 </dl>
 
-<a href="/delete_character/<%= @character.id %>">
-  Delete character
-</a>
 
-<hr>
+<div class="row mb-4">
+  <div class="col">
+    <a href="/characters/<%= @character.id %>/edit" class="btn btn-block btn-outline-secondary">
+      Edit character
+    </a>
+  </div>
 
-<a href="/characters">
-  Go back
-</a>
+  <div class="col">
+    <a href="/delete_character/<%= @character.id %>" class="btn btn-block btn-outline-secondary">
+      Delete character
+    </a>
+  </div>
+</div>

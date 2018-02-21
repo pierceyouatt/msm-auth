@@ -14,5 +14,5 @@
 class Director < ApplicationRecord
   validates :name, :presence => true, :uniqueness => { :scope => :dob }
 
-  has_many :movies
+  has_many :movies, :dependent => :destroy
 end

@@ -11,10 +11,6 @@
 <table class="table">
   <tr>
     <th>
-      ID
-    </th>
-
-    <th>
       Movie
     </th>
 
@@ -27,41 +23,25 @@
     </th>
 
     <th>
-      Created at
-    </th>
-
-    <th>
-      Updated at
-    </th>
-
-    <th>
     </th>
   </tr>
 
   <% @characters.each do |character| %>
   <tr>
     <td>
-      <%= character.id %>
+      <a href="/movies/<%= character.movie_id %>">
+        <%= character.movie.title %>
+      </a>
     </td>
 
     <td>
-      <%= character.movie_id %>
-    </td>
-
-    <td>
-      <%= character.actor_id %>
+      <a href="/actors/<%= character.actor_id %>">
+        <%= character.actor.name %>
+      </a>
     </td>
 
     <td>
       <%= character.name %>
-    </td>
-
-    <td>
-      <%= time_ago_in_words(character.created_at) %> ago
-    </td>
-
-    <td>
-      <%= time_ago_in_words(character.updated_at) %> ago
     </td>
 
     <td>

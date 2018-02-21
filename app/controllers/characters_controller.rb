@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
   def index
-    @characters = Character.all
+    @characters = Character.includes(:movie).order("movies.title")
 
     render("character_templates/index.html.erb")
   end
